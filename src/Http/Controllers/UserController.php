@@ -56,7 +56,8 @@ class UserController extends Controller
         ]);
 
         if ($request->has('roles')) {
-            $user->syncRoles($request->roles);
+            $roles = Role::whereIn('id', $request->roles)->get();
+            $user->syncRoles($roles);
         }
 
         return redirect()->route('rp.users.index')
@@ -142,7 +143,8 @@ class UserController extends Controller
         ]);
 
         $user = $this->userModel::findOrFail($id);
-        $user->syncRoles($request->roles);
+        $roles = Role::whereIn('id', $request->roles)->get();
+        $user->syncRoles($roles);
 
         return redirect()->back()
             ->with('success', 'Roles assigned successfully.');
