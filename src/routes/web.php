@@ -6,7 +6,7 @@ use Sunwarul\RP\Http\Controllers\UserController;
 use Sunwarul\RP\Http\Controllers\RoleController;
 use Sunwarul\RP\Http\Controllers\PermissionController;
 
-Route::group([], function () {
+Route::middleware(['role:admin|superadmin|super-admin'])->group(function () {
     // Settings
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
