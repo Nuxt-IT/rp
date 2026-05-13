@@ -41,6 +41,7 @@ class RPServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \NuxtIt\RP\Console\Commands\SyncPermissionsCommand::class,
+                \NuxtIt\RP\Console\Commands\SyncMigrationsCommand::class,
             ]);
         }
     }
